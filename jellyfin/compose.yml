@@ -15,6 +15,9 @@ services:
       - /path/to/library:/config
       - /path/to/tvseries:/data/tvshows
       - /path/to/movies:/data/movies
+      - /path/to/music:/data/music
+      - /path/to/books:/data/books
+      - /path/to/home-media:/data/home-media
     ports:
       - 8096:8096
       - 8920:8920 #optional
