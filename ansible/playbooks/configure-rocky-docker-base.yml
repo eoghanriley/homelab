@@ -1,0 +1,15 @@
+---
+- name: Install and configure Docker
+  hosts: rocky-docker-base
+  become: true
+
+  tasks:
+    - import_role:
+        name: dnf_update
+
+    - import_role:
+        name: docker_install
+      vars:
+        docker_users:
+          - eriley
+          - ariley
