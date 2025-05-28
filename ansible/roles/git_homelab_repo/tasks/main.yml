@@ -1,0 +1,5 @@
+- name: Pull homelab repo
+  ansible.builtin.git:
+    repo: https://github.com/eoghanriley/homelab.git
+    dest: /opt/homelab
+    update: yes
