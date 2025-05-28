@@ -4,6 +4,10 @@
   become: true
 
   tasks:
+    - name: Load Immich Vault secrets
+      ansible.builtin.include_vars:
+        file: "{{ playbook_dir }}/../vault/immich_env.yml"
+
     - name: Check if /dev/sdb1 exists
       ansible.builtin.stat:
         path: /dev/sdb1
