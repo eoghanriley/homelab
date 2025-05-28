@@ -3,3 +3,4 @@
     repo: https://github.com/eoghanriley/homelab.git
     dest: /opt/homelab
     update: yes
+    version: "{{ repo_version }}"

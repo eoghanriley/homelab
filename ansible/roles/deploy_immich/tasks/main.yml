@@ -2,6 +2,8 @@
 - name: Cloning homelab repo
   import_role:
     name: git_homelab_repo
+  vars:
+    repo_version: immich
 
 - name: Deploy .env file from Vaulted secrets
   ansible.builtin.template:
