@@ -1,0 +1,19 @@
+---
+- name: Cloning homelab repo
+  import_role:
+    name: git_homelab_repo
+  vars:
+    repo_version: immich
+
+- name: Deploy .env file from Vaulted secrets
+  ansible.builtin.template:
+    src: .env.j2
+    dest: /opt/homelab/docker/immich/.env
+    mode: '0600'
+    
+- name: Deploy Immich with Docker Compose
+  community.docker.docker_compose_v2:
+    project_src: /opt/homelab/docker/immich
+    pull: always
+    recreate: always
+    state: present

@@ -1,0 +1,45 @@
+---
+- name: Setup Immich vm
+  hosts: immich
+  become: true
+
+  tasks:
+    - name: Load Immich Vault secrets
+      ansible.builtin.include_vars:
+        file: "{{ playbook_dir }}/../vault/immich_env.yml"
+
+    - name: Check if /dev/sdb1 exists
+      ansible.builtin.stat:
+        path: /dev/sdb1
+      register: sdb1_dir
+
+    - name: Check if /images exists
+      ansible.builtin.stat:
+        path: /images
+      register: images_dir
+
+    - name: Create sdb1 partition
+      community.general.parted:
+        device: /dev/sdb
+        number: 1
+        state: present
+        fs_type: ext4
+      when: not sdb1_dir.stat.exists
+
+    - name: Formatting sdb1
+      community.general.filesystem:
+        fstype: ext4
+        dev: /dev/sdb1
+      when: sdb1_dir.stat.exists and not images_dir.stat.exists
+
+    - name: Mount sb1
+      ansible.posix.mount:
+        fstype: ext4
+        src: /dev/sdb1
+        path: /images
+        state: mounted
+      when: not images_dir.stat.exists
+
+    - name: Deploy Immich
+      import_role:
+        name: deploy_immich

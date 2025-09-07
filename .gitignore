@@ -1,0 +1,6 @@
+docker/immich/.env
+.idea
+.terraform
+.env
+.terraform.lock.hcl
+terraform.tfstate.backup
