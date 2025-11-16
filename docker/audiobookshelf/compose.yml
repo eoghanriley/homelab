@@ -1,0 +1,14 @@
+services:
+  audiobookshelf:
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    ports:
+      - 13378:80
+    volumes:
+      - /jelly-media/abs-audiobook:/audiobooks
+      - /jelly-media/abs-ebook:/ebooks
+      - /jelly-media/abs-podcast:/podcasts
+      - /opt/abs-config:/config
+      - /jelly-media/abs-metadata:/metadata
+    environment:
+      - TZ=America/New_York
+
