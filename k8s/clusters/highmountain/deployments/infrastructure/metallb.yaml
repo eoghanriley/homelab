@@ -5,8 +5,10 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
+  retryInterval: 30s
   path: ./k8s/infrastructure/metallb/overlays/highmountain
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
+  wait: true
