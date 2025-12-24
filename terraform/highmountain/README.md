@@ -32,7 +32,7 @@ terraform apply
 At the start you only need the ip for one control node, which can be found in the console tab in proxmox
 
 ```
-talosctl gen config talos-proxmox-cluster https://$CONTROL_PLANE_IP:6443 --output-dir _out --install-image  factory.talos.dev/nocloud-installer/e56585505a2c794a7df2e9b0ab1614d421aaf1f1e3262e5abb47e20002cbb878:v1.10.6
+talosctl gen config talos-proxmox-cluster https://$CONTROL_PLANE_IP:6443 --output-dir _out --install-image https://factory.talos.dev/image/e5d4ce8e5c33d77e02e0642b7fb2343657ebbd648a3bf6da6a3b4f347417ec72/v1.12.0/nocloud-amd64.iso
 ```
 to figure out which disk to boot to (prob vda)
 ```
@@ -40,7 +40,6 @@ talosctl get disks --insecure --nodes $CONTROL_PLANE_IP
 ```
 if it is not sda, update controlplane.yml and worker.yaml to replace sda with what it is
 
-apply control plane config
 ```
 talosctl apply-config --insecure --nodes $CONTROL_PLANE_IP --file _out/controlplane.yaml
 ```
