@@ -9,6 +9,7 @@ spec:
   interval: 1m0s
   ref:
     branch: main
+    ignore: ./k8s/clusters/highmountain/talosconfig
   secretRef:
     name: flux-system
   url: ssh://git@github.com/eoghanriley/homelab
