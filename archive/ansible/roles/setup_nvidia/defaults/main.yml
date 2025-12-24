@@ -1,0 +1,12 @@
+---
+secure_boot_enabled: false
+#docker run --rm --gpus all nvidia/cuda:12.9.0-cudnn-runtime-rockylinux9 nvidia-smi -L
+
+
+# sudo systemctl stop docker
+# sudo rm /etc/docker/daemon.json
+# sudo nvidia-ctk runtime configure --runtime=docker
+# sudo systemctl restart docker
+# sudo reboot
+
+
