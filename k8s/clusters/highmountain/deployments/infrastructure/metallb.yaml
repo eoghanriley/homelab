@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  path: ../../../../infrastructure/metallb/overlays/highmountain
+  path: ./k8s/deployments/infrastructure/metallb/overlays/highmountain
   prune: true
   sourceRef:
     kind: GitRepository
