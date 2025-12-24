@@ -65,3 +65,8 @@ to add worker nodes
 ```
 talosctl apply-config --insecure --nodes $WORKER_IP --file _out/worker.yaml
 ```
+
+If you want to run pods on control plane nodes
+```
+kubectl taint nodes --all node-role.kubernetes.io/control-plane:NoSchedule-
+```
