@@ -4,8 +4,6 @@ resources:
   - namespace.yaml
   - serviceaccount.yaml
   - vault.yaml
-  - foundry-vaultsecret.yaml
-  - smb-vaultsecret.yaml
   - storageclass.yaml
   - pvc.yaml
   - deployment.yaml
