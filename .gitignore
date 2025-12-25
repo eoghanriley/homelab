@@ -4,3 +4,4 @@ docker/immich/.env
 .env
 .terraform.lock.hcl
 terraform.tfstate.backup
+terraform.tfvars

@@ -1,0 +1,18 @@
+vault_address     = "http://localhost:8200"
+vault_token       = "root"
+foundry_username  = "your-foundry-username"
+foundry_password  = "your-foundry-password"
+foundry_admin_key = "your-admin-key"
+```
+
+Create a `.gitignore` in the `vault-config` directory:
+```
+# Terraform files
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# Sensitive files
+terraform.tfvars
+*.auto.tfvars
