@@ -1,0 +1,63 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultConnection
+metadata:
+  name: default
+  namespace: foundry-vtt
+spec:
+  address: http://vault.vault:8200
+---
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  name: foundry-auth
+  namespace: foundry-vtt
+spec:
+  method: kubernetes
+  mount: kubernetes
+  kubernetes:
+    role: foundry
+    serviceAccount: foundry-vtt
+  vaultConnectionRef: default
+---
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  name: smb-auth
+  namespace: foundry-vtt
+spec:
+  method: kubernetes
+  mount: kubernetes
+  kubernetes:
+    role: smb-csi
+    serviceAccount: foundry-vtt
+  vaultConnectionRef: default
+---
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultStaticSecret
+metadata:
+  name: foundry-credentials
+  namespace: foundry-vtt
+spec:
+  type: kv-v2
+  mount: secret
+  path: foundry/credentials
+  destination:
+    name: foundry-credentials
+    create: true
+  refreshAfter: 30s
+  vaultAuthRef: foundry-auth
+---
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultStaticSecret
+metadata:
+  name: smb-credentials
+  namespace: foundry-vtt
+spec:
+  type: kv-v2
+  mount: secret
+  path: smb/credentials
+  destination:
+    name: smbcreds
+    create: true
+  refreshAfter: 30s
+  vaultAuthRef: smb-auth

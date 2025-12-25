@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: foundry-vtt
+  namespace: foundry-vtt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: foundry-vtt
+  template:
+    metadata:
+      labels:
+        app: foundry-vtt
+    spec:
+      serviceAccountName: foundry-vtt
+      containers:
+      - name: foundry-vtt
+        image: felddy/foundryvtt:release
+        ports:
+        - containerPort: 30000
+          name: http
+        env:
+        - name: FOUNDRY_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: foundry-credentials
+              key: username
+        - name: FOUNDRY_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: foundry-credentials
+              key: password
+        - name: FOUNDRY_ADMIN_KEY
+          valueFrom:
+            secretKeyRef:
+              name: foundry-credentials
+              key: admin_key
+        volumeMounts:
+        - name: data
+          mountPath: /data
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: foundry-vtt-data
