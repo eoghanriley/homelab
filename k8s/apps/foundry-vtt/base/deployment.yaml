@@ -14,6 +14,9 @@ spec:
         app: foundry-vtt
     spec:
       serviceAccountName: foundry-vtt
+      securityContext:
+        runAsUser: 421
+        runAsGroup: 421
       containers:
       - name: foundry-vtt
         image: felddy/foundryvtt:release

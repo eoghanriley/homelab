@@ -12,5 +12,12 @@ parameters:
 reclaimPolicy: Retain
 volumeBindingMode: Immediate
 mountOptions:
-  - dir_mode=0777
-  - file_mode=0777
+  - vers=3.1.1
+  - rw
+  - nobrl
+  - serverino
+  - mfsymlinks
+  - uid=421
+  - gid=421
+  - dir_mode=0775
+  - file_mode=0775
