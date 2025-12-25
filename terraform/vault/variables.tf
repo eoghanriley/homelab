@@ -28,3 +28,28 @@ variable "foundry_admin_key" {
   type        = string
   sensitive   = true
 }
+
+variable "smb_username" {
+  description = "SMB/Samba username"
+  type        = string
+  default     = "k8s-storage"
+  sensitive   = true
+}
+
+variable "smb_password" {
+  description = "SMB/Samba password"
+  type        = string
+  sensitive   = true
+}
+
+variable "smb_server" {
+  description = "SMB server address"
+  type        = string
+  default     = "192.168.86.207"
+}
+
+variable "smb_share" {
+  description = "SMB share path"
+  type        = string
+  default     = "/kubernetes"
+}

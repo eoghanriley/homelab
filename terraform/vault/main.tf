@@ -58,3 +58,35 @@ resource "vault_kv_secret_v2" "foundry_credentials" {
     admin_key = var.foundry_admin_key
   })
 }
+
+# Create policy for SMB credentials
+resource "vault_policy" "smb" {
+  name = "smb-policy"
+
+  policy = <<EOT
+path "secret/data/smb/*" {
+  capabilities = ["read", "list"]
+}
+EOT
+}
+
+# Create Kubernetes auth role for SMB
+resource "vault_kubernetes_auth_backend_role" "smb" {
+  backend                          = vault_auth_backend.kubernetes.path
+  role_name                        = "smb-csi"
+  bound_service_account_names      = ["*"]
+  bound_service_account_namespaces = ["foundry-vtt", "default", "kube-system"]
+  token_ttl                        = 86400
+  token_policies                   = [vault_policy.smb.name]
+}
+
+# Store SMB credentials in Vault
+resource "vault_kv_secret_v2" "smb_credentials" {
+  mount = vault_mount.kv.path
+  name  = "smb/credentials"
+
+  data_json = jsonencode({
+    username = var.smb_username
+    password = var.smb_password
+  })
+}
