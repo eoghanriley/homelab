@@ -33,8 +33,14 @@ spec:
             path = "/vault/data"
           }
       dataStorage:
-        enabled: true
-        size: 10Gi
+        enabled: false
+        #size: 10Gi
+      volumes:
+        - name: data
+          emptydir: {}
+      volumeMounts:
+        - name: data
+          mountPath: /vault/data
     ui:
       enabled: true
       serviceType: "LoadBalancer"
