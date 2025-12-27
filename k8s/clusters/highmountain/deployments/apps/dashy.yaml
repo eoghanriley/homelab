@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  path: ./k8s/apps/dashy
+  path: ./k8s/apps/dashy/overlays/highmountain
   prune: true
   sourceRef:
     kind: GitRepository
