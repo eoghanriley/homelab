@@ -8,7 +8,7 @@
   perSystem = { pkgs, ... }: {
     packages.myEmacs = 
      (pkgs.extend inputs.nix-doom-emacs-unstraightened.overlays.default).emacsWithDoom {
-      doomDir = ./;
+      doomDir = "./";
       doomLocalDir = "~/.local/share/nix-doom";
     };
   };
