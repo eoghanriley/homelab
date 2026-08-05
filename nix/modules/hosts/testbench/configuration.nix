@@ -5,6 +5,7 @@
       self.nixosModules.testbenchHardware
       self.nixosModules.niri
       self.nixosModules.noctalia
+      self.nixosModules.emacs
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
