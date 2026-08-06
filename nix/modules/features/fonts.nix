@@ -7,7 +7,7 @@
       nerd-fonts.jetbrains-mono
       noto-fonts
       noto-fonts-color-emoji
-      gdouros-symbola
+      gdouros-fonts.symbola
     ];
 
     fonts.fontconfig = {
