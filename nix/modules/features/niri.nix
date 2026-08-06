@@ -13,9 +13,7 @@
       settings = {
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
-	spawn-at-startup = [
-	  (lib.getExe self'.packages.myNoctalia)
-	];
+        prefer-no-csd = true;
 
         input.keyboard = {
           xkb.layout = "us";
@@ -30,7 +28,7 @@
 	    "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
 
 	  # Manage windows
-          "Mod+W".close-window = {};
+      "Mod+W".close-window = {};
 	  "Mod+MouseMiddle".close-window = {};
 
 	  "Mod+F".fullscreen-window = {};
@@ -56,6 +54,10 @@
 	  "Mod+Shift+W".screenshot-window = {};
 
 	  "Mod+Space".toggle-overview = {};
+
+      spawn-at-startup = [
+	    (lib.getExe self'.packages.myNoctalia)
+	  ];
         };
       };
     };
