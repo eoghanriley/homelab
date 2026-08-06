@@ -1,7 +1,7 @@
 { self, inputs, ... }: {
   flake.nixosModules.fonts = { pkgs, ... }: {
     nixpkgs.config.allowUnfreePredicate = pkg:
-      builtins.elem (pkgs.lib.getName pkg) [ "gdouros-symbola" ];
+      builtins.elem (pkgs.lib.getName pkg) [ "symbola" ];
 
     fonts.packages = with pkgs; [
       nerd-fonts.jetbrains-mono
@@ -16,7 +16,7 @@
         monospace = [ "JetBrainsMono Nerd Font" ];
         sansSerif = [ "Noto Sans" ];
         serif = [ "Noto Serif" ];
-        emoji = [ "Noto Fonts Color Emoji" ];
+        emoji = [ "Noto Color Emoji" ];
       };
     };
   };
