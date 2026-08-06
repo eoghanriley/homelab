@@ -55,12 +55,13 @@
 
 	      "Mod+Space".toggle-overview = {};
 
-          spawn-at-startup = [
-	        (lib.getExe self'.packages.myNoctalia)
-	      ];
+
           "Alt+Space".spawn-sh =
 	       "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
         };
+        spawn-at-startup = [
+	      (lib.getExe self'.packages.myNoctalia)
+	    ];
       };
     };
   };
