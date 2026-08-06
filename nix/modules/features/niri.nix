@@ -26,10 +26,8 @@
         binds = {
 	      # Launch applications
           "Mod+Return".spawn-sh = lib.getExe pkgs.ghostty;
-	      "Alt+Space".spawn-sh =
-	       "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
 
-	      # Manage windows
+	     # Manage windows
          "Mod+W".close-window = {};
 	     "Mod+MouseMiddle".close-window = {};
 
@@ -60,6 +58,8 @@
          spawn-at-startup = [
 	       (lib.getExe self'.packages.myNoctalia)
 	     ];
+         "Alt+Space".spawn-sh =
+	       "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
         };
       };
     };
