@@ -1,6 +1,6 @@
 { self, inputs, ... }: {
   flake.nixosModules.fonts = { pkgs, ... }: {
-    nixpkgs.config.allowUnfreePredicate = pkg:
+    nixpkgs.config.allowUnfreePredicate = pkg;
 
     fonts.packages = with pkgs; [
       nerd-fonts.jetbrains-mono
