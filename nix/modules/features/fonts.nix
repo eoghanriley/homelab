@@ -1,13 +1,12 @@
 { self, inputs, ... }: {
   flake.nixosModules.fonts = { pkgs, ... }: {
     nixpkgs.config.allowUnfreePredicate = pkg:
-      builtins.elem (pkgs.lib.getName pkg) [ "symbola" ];
 
     fonts.packages = with pkgs; [
       nerd-fonts.jetbrains-mono
       noto-fonts
       noto-fonts-color-emoji
-      gdouros-fonts.symbola
+      (pkgs.callPackage "${pkgs.path}/pkgs/data/fonts/gdouros" { }).symbola
     ];
 
     fonts.fontconfig = {
