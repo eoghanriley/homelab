@@ -11,9 +11,11 @@
       inherit pkgs;
 
       settings = {
-        xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
+        extraConfig = ''
+          prefer-no-csd
+        '';
 
-        prefer-no-csd = true;
+        xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
         input.keyboard = {
           xkb.layout = "us";
