@@ -6,6 +6,7 @@
       self.nixosModules.niri
       self.nixosModules.noctalia
       self.nixosModules.emacs
+      self.nixosModules.fonts
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
